@@ -42,11 +42,11 @@ body {
 .loading-container {
   width: 100%;
   text-align: center;
-  margin: 40px auto;
+  /*margin: 0 auto;*/
+  /* bring your own prefixes */
   position: fixed;
   top: 50%;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
 
