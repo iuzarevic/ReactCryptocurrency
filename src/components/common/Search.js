@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import Loading from './Loading';
 import { handleResponse } from '../../helpers';
 import { API_URL } from '../../config';
@@ -12,9 +13,11 @@ class Search extends React.Component {
         this.state = {
             loading: false,
             searchQuery: '',
+            searchResults: [],
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleRedirect = this.handleRedirect.bind(this);
     }
 
     handleChange(event) {
@@ -31,13 +34,62 @@ class Search extends React.Component {
         fetch(`${API_URL}/autocomplete?searchQuery=${searchQuery}`)
         .then(handleResponse)
         .then((result) => {
-            console.log(result);
-            this.setState({loading: false});
-        })  
+            this.setState({
+                loading: false,
+                searchResults: result,
+            });
+        })
+    }
+
+    //handleRedirect method
+    handleRedirect(currencyId) {
+        //clear input values and close autocomplete container, by clearing searchQuery state
+        this.setState({
+            searchQuery: '',
+            searchResults: [],
+        });
+
+        this.props.history.push(`/currency/${currencyId}`);
+    }
+
+    renderSearchResults() {
+        const {searchResults, searchQuery, loading} = this.state;
+
+        if(!searchQuery) {
+            return '';
+        }
+
+        if(searchResults.length > 0) {
+            return(
+                <div className="Search-result-container">
+                    {searchResults.map(result => (
+                        <div 
+                            key={result.id} 
+                            className="Search-result"
+                            onClick={() => this.handleRedirect(result.id)}
+                            value
+                        >
+                            {result.name} ({result.symbol})
+                        </div>
+                    ))}
+                </div>
+            );
+        }
+
+        if(!loading) {
+            return(
+                <div className="Search-result-container">
+                    <div className="Search-no-result">
+                        No results found.
+                    </div>
+                </div>
+            );
+        }
+
     }
 
     render() {
-        const {loading} = this.state;
+        const {loading, searchQuery} = this.state;
         return (
             <div className="Search">
                 {/*<input ref={(input) => {this.searchQuery = input}} /> */}
@@ -47,15 +99,18 @@ class Search extends React.Component {
                     type="text"
                     placeholder="Currency name"
                     onChange={this.handleChange}
+                    value = {searchQuery}
                 />
                 {loading &&
                     <div className="Search-loading">
                         <Loading width='12px' height='12px' />
                     </div>
                 }
+
+                {this.renderSearchResults()}
             </div>
         );
     }
 }
 
-export default Search;
+export default  withRouter(Search);
