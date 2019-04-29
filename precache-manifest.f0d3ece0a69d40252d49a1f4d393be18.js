@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/ReactCryptocurrency/static/js/runtime~main.a2c92162.js"
   },
   {
-    "revision": "641d2202097a79320f80",
-    "url": "/ReactCryptocurrency/static/js/main.641d2202.chunk.js"
+    "revision": "bf69281dc6862e25bb2b",
+    "url": "/ReactCryptocurrency/static/js/main.bf69281d.chunk.js"
   },
   {
-    "revision": "b0bb960463f7037f9d87",
-    "url": "/ReactCryptocurrency/static/js/2.b0bb9604.chunk.js"
+    "revision": "8752cdae75ca02971cd1",
+    "url": "/ReactCryptocurrency/static/js/2.8752cdae.chunk.js"
   },
   {
-    "revision": "641d2202097a79320f80",
+    "revision": "bf69281dc6862e25bb2b",
     "url": "/ReactCryptocurrency/static/css/main.bd25659b.chunk.css"
   },
   {
-    "revision": "163302e838d0cb7bf3dc0c570efe9f13",
+    "revision": "7c89caeb7f3182100165faf662c3ecff",
     "url": "/ReactCryptocurrency/index.html"
   }
 ];
