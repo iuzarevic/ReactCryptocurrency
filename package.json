@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "proxy": "http://localhost:5000/",
+  "homepage":"https://iuzarevic.github.io/ReactCryptocurrency",
   "devDependencies": {
     "react-scripts": "2.1.5"
   },
   "dependencies": {
     "cryptiles": "^4.1.2",
+    "gh-pages": "^2.0.1",
     "macaddress": "^0.2.9",
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
@@ -16,6 +18,8 @@
     "url-parse": "^1.4.3"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "now-build": "react-scripts build",
